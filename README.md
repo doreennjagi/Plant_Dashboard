@@ -5,7 +5,7 @@ The **Plants Dashboard Project** is a business intelligence initiative designed 
 
 The project focuses on solving the problem of **understanding sales performance, profitability, and geographic trends** for different plant types and clients.  
 
-By combining **Python data engineering** with **Power BI visual analytics**, the project delivers a portfolio-ready dashboard that helps stakeholders make **data-driven decisions**.  
+By combining **Python data engineering** with **Power BI visual analytics**, the project delivers a ready dashboard containing **data-driven decisions**.  
 
 The dashboard provides:
 
@@ -76,6 +76,17 @@ After processing, a cleaned dataset is generated: `Plants_Dashboard_Cleaned.csv`
 
 ---
 
+---
+
+### Key Learnings
+
+- Built an **end-to-end business intelligence workflow**, transforming raw transactional data into executive-ready insights  
+- Strengthened ability to design **solution-oriented dashboards** that support decision-making rather than simply reporting metrics  
+- Developed practical experience with **hierarchical analysis and drill-down design** for product-level performance evaluation  
+- Applied **geospatial analysis** to uncover regional performance patterns and revenue concentration  
+- Improved dashboard usability through **thoughtful layout, KPI prioritization, and mobile optimization**
+
+---
 
 ### 4. Project Structure
 
@@ -94,14 +105,3 @@ Plant_Dashboard/
 └── .venv/
 ---
 
----
-
-### Key Learnings
-
-- Built an **end-to-end business intelligence workflow**, transforming raw transactional data into executive-ready insights  
-- Strengthened ability to design **solution-oriented dashboards** that support decision-making rather than simply reporting metrics  
-- Developed practical experience with **hierarchical analysis and drill-down design** for product-level performance evaluation  
-- Applied **geospatial analysis** to uncover regional performance patterns and revenue concentration  
-- Improved dashboard usability through **thoughtful layout, KPI prioritization, and mobile optimization**
-
----
