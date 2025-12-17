@@ -1,63 +1,107 @@
-# 🌱 Plants Revenue & Growth Optimization Dashboard
+# 🌱 Plants Dashboard Project
 
-## Dataset
-The project leverages a **relational plant sales dataset**, structured in a typical business intelligence schema:
+## Project Overview
+The **Plants Dashboard Project** is a business intelligence initiative designed to **transform raw plant sales and account data into actionable insights**.  
 
-- **Plants_FACT.csv** – Transactional data: `Sales_USD`, `Price_USD`, `COGS_USD`, `quantity`, `Date_Time`, `Product_id`, `Account_id`  
-- **PlantsHierarchy_DIM.csv** – Product metadata: `Product_Family`, `Product_Group`, `Product_Name`, `Product_Size`, `Produt_Type`  
-- **Accounts_DIM.csv** – Customer and geographic info: `Account`, `country2`, `latitude2`, `longitude`, `Postal_code`, `street_name`  
+The project focuses on solving the problem of **understanding sales performance, profitability, and geographic trends** for different plant types and clients.  
 
-This dataset captures **sales performance, product characteristics, and customer location**, providing the foundation for actionable business insights.
+By combining **Python data engineering** with **Power BI visual analytics**, the project delivers a portfolio-ready dashboard that helps stakeholders make **data-driven decisions**.  
+
+The dashboard provides:
+
+- **Key KPIs:** Total Sales, Total Quantity, Gross Profit, Profit Margin  
+- **Trend Analysis:** Monthly sales and profit trends; performance by Product Family and Product Type  
+- **Product Drill-down:** Hierarchy from Product Family → Product Group → Product Name; interactive species-level insights  
+- **Geospatial Analysis:** Map showing Sales by Account location, color-coded by Sales or Profit Margin  
+- **Filters / Slicers:** Country, Product Type, Product Size, Date (Year/Month/Quarter)  
+- **Advanced DAX Metrics:** Profit Margin by Product Family, Top 5 products by sales, Year-over-Year growth  
+
+This end-to-end workflow ensures actionable insights for inventory, marketing, and sales strategy.
+
+---
 
 ## Problem Statement
-The company lacked a **centralized view of plant sales performance**, making it difficult to:  
+Plant distributors often face challenges such as:
 
-1. Identify which products and regions are **most profitable**  
-2. Detect sales trends to **forecast demand**  
-3. Optimize **inventory and supply chain decisions**  
-4. Target high-value customers and markets efficiently  
+- Identifying the **most profitable plant species and families**  
+- Understanding **regional variations in sales and profit**  
+- Recognizing **top-performing clients/accounts**  
+- Using **historical trends** to inform inventory and marketing strategies  
 
-The goal of this project was to **build a dashboard that solves these problems** by turning raw data into actionable insights.
+The dashboard **solves these problems** by integrating Python data processing with interactive Power BI visualizations.
 
-## Process
+---
 
-### 1. Data Preparation & Cleaning
-- Checked for missing values, corrected inconsistent `Account_id`s, and ensured all fact table entries mapped to valid dimensions.  
-- Converted `Date_Time` to a proper datetime format for trend analysis.  
-- Standardized categorical columns in `PlantsHierarchy_DIM` and `Accounts_DIM`.
+## Dataset
+The project uses a relational dataset typical of a business intelligence environment:
 
-### 2. Data Modeling
-- Defined **relationships** between Fact and Dimension tables:  
-  - `Plants_FACT.Product_id` → `PlantsHierarchy_DIM.Product_Name_id`  
-  - `Plants_FACT.Account_id` → `Accounts_DIM.Account_id`  
-- Created a **star schema** for efficient reporting and slicing.
+1. **Plants_FACT.csv** – transactional data including Sales, Quantity, Price, COGS, Date, and Account IDs  
+2. **PlantsHierarchy_DIM.csv** – product details including Family, Group, Species, Size, and Type  
+3. **Accounts_DIM.csv** – account and geographic information including Country, Latitude/Longitude, and Address  
 
-### 3. KPI Definition & Calculation
-- Gross Profit: `Sales_USD - COGS_USD`  
-- Profit Margin %: `(Sales_USD - COGS_USD) / Sales_USD * 100`  
-- Quantity Trends: Aggregated daily/monthly sales volume  
-- Product & Region Performance: Calculated total sales, profit, and quantity by hierarchy and geography
+After processing, a cleaned dataset is generated: `Plants_Dashboard_Cleaned.csv`, ready for visualization and analytics.
 
-### 4. Dashboard Design & Visualization
-- **Revenue & Profit Analysis:** Heatmaps by product family and region  
-- **Trend Analysis:** Line charts showing monthly sales and growth trends  
-- **Drill-Down Analytics:** Hierarchy from Product_Family → Product_Group → Product_Name  
-- **Geospatial Analysis:** Map visualizations for top-performing accounts and countries  
-- **Interactive KPIs:** Dynamic slicers for product type, size, and region
+---
 
-### 5. Insights & Actionable Outcomes
-- Identified **high-margin products** to prioritize for marketing and inventory  
-- Highlighted **underperforming regions** for targeted sales campaigns  
-- Detected seasonal **sales peaks** to optimize stock levels  
-- Provided **executive-ready KPIs** for real-time decision-making  
+## Workflow
 
-## Tools & Technologies
-- **Power BI Desktop** – Dashboard creation and interactive visualizations  
-- **DAX (Data Analysis Expressions)** – Custom measures for profit, margin, and growth metrics  
-- **Data Modeling** – Fact-Dimension relationships for accurate, drill-down reporting  
+### 1. Python Data Preparation
+- **Libraries:** `pandas`, `os`  
+- **Steps:**  
+  - Load and inspect datasets  
+  - Clean data: trim strings, fill missing Account IDs, parse dates  
+  - Compute KPIs:  
+    ```python
+    fact['Gross_Profit'] = fact['Sales_USD'] - fact['COGS_USD']
+    fact['Profit_Margin'] = fact['Gross_Profit'] / fact['Sales_USD'] * 100
+    ```  
+  - Merge Fact and Dimension tables into a **single dataset for Power BI**  
+  - Export `Plants_Dashboard_Cleaned.csv`  
 
-## Key Learnings
-- Applied **end-to-end BI workflow**: from data cleaning and modeling to visualization and insights  
-- Developed **solution-focused dashboards** that guide business decisions rather than just highlight problems  
-- Gained expertise in **hierarchical and geospatial analysis** for actionable insights  
-- Built dashboards **optimized for desktop and mobile stakeholders**, enabling on-the-go decision-making
+---
+
+### 2. Power BI Dashboard
+- **Key Visualizations:**  
+  - KPIs, trend charts, product hierarchy drill-down, geographic maps  
+- **Filters & Slicers:** Country, Product Type, Product Size, Date  
+- **Advanced DAX Metrics:** Profit Margin by Product Family, Top 5 products by sales, Year-over-Year growth  
+
+---
+
+### 3. Insights & Impact
+- Identified the **most profitable plant families and species**  
+- Highlighted **geographic regions with high revenue**  
+- Enabled **interactive drill-down** to understand account-level performance  
+- Equipped stakeholders with **data-driven insights** for inventory, sales, and marketing strategies  
+
+---
+
+
+### 4. Project Structure
+
+```text
+Plant_Dashboard/
+├── .gitignore
+├── README.md
+├── data/
+│   ├── PlantsHierarchy_DIM.csv
+│   ├── Plants_FACT.csv
+│   ├── Accounts_DIM.csv
+│   └── Plants_Dashboard_Cleaned.csv
+├── scripts/                 # Python scripts for data cleaning and KPI calculations
+│   └── prepare_data.py
+├── .vscode/
+└── .venv/
+---
+
+---
+
+### Key Learnings
+
+- Built an **end-to-end business intelligence workflow**, transforming raw transactional data into executive-ready insights  
+- Strengthened ability to design **solution-oriented dashboards** that support decision-making rather than simply reporting metrics  
+- Developed practical experience with **hierarchical analysis and drill-down design** for product-level performance evaluation  
+- Applied **geospatial analysis** to uncover regional performance patterns and revenue concentration  
+- Improved dashboard usability through **thoughtful layout, KPI prioritization, and mobile optimization**
+
+---
